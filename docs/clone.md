@@ -15,7 +15,7 @@
 - You can see the application running
 
 ## Install packages authentication
-- Go to this _01-start-project.md#2.Install package authentication_ ->[Here](https://github.com/tqt97/Hello-laravel/docs/01-start-project.md)
+- Go to this _01-start-project.md#2.Install package authentication_ ->[Here](https://github.com/tqt97/Hello-laravel/blob/master/docs/01-start-project.md)
 
 ----------------------------------------------------------------
 ### Aliases in cmd/command
