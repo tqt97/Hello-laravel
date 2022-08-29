@@ -1,17 +1,13 @@
 <x-app-layout>
-    <x-slot name="title">
-        {{ __('List categories') }}
-    </x-slot>
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('List categories') }}
+            {{ __('List posts') }}
         </h2>
     </x-slot>
 
     <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('categories.create') }}"
+            <a href="{{ route('posts.create') }}"
                 class="inline-flex items-center mb-5 px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6 mr-1">
@@ -19,59 +15,57 @@
                 </svg>
                 {{ __('Add new') }}
             </a>
+            @include('admin.post.filters')
 
-            @include('admin.category.filters')
             <div class="bg-white p-5 overflow-auto shadow-xl sm:rounded-lg">
-
                 <table class="min-w-max w-full table-auto">
-                    <thead class="">
-                        <tr class="bg-gray-800 text-gray-50 text-md leading-normal">
+                    <thead>
+                        <tr class="bg-gray-800 text-gray-50  text-md leading-normal">
                             <th class="py-3 px-6 text-center"> {{ __('No.') }}</th>
-                            <th class="py-3 px-6 text-left"> {{ __('Name') }}</th>
-                            <th class="py-3 px-6 text-left"> {{ __('Slug') }}</th>
+                            <th class="py-3 px-6 text-left">{{ __('Title') }}</th>
+                            <th class="py-3 px-6 text-left">{{ __('Category') }}</th>
+                            {{-- <th class="py-3 px-6 text-left">{{ __('Slug') }}</th> --}}
                             <th class="py-3 px-6 text-left">{{ __('Created at') }}</th>
+                            <th class="py-3 px-6 text-left">{{ __('Created by') }}</th>
                             <th class="py-3 px-6 text-center">{{ __('Status') }}</th>
+                            <th class="py-3 px-6 text-center">{{ __('Feature') }}</th>
                             <th class="py-3 px-6 text-center">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
-                        @forelse ($categories as $index=>$category)
+                        @forelse ($posts as $index => $post)
                             <tr
                                 class="hover:bg-gray-100 border-b border-b-slate-200 hover:text-black hover:border-b-slate-300">
-                                <td class="py-3 px-6 text-center">
-                                    {{ $index + $categories->firstItem() }}
-                                </td>
                                 <td class="py-3 px-6 text-left">
+                                    {{ $index + $posts->firstItem() }}
+                                </td>
 
-
+                                <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
                                         <div class="mr-2">
-                                            {{ $category->name }}
+                                            @if (Str::startsWith($post->image, 'https://via.placeholder.com/'))
+                                                <img class="w-6 h-6 rounded-full" src="{{ $post->image }}" />
+                                            @else
+                                                <img class="w-6 h-6 rounded-full"
+                                                    src="{{ asset('storage/posts/' . $post->image) }}"
+                                                    alt="image post">
+                                            @endif
                                         </div>
-                                        <span class="text-right font-bold text-cyan-500">
-                                            ({{ $category->posts()->count() }})
-                                        </span>
-                                        <a
-                                            href="{{ route('posts.index') }}?search=&category_id={{ $category->id }}&user_id=">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
-                                            </svg>
-
-
-                                        </a>
+                                        <span class="font-medium">{{ $post->title }}</span>
                                     </div>
 
                                 </td>
                                 <td class="py-3 px-6 text-left">
-                                    {{ $category->slug }}
+                                    {{ $post->category->name }}
                                 </td>
                                 <td class="py-3 px-6 text-left">
-                                    {{ $category->created_at }}
+                                    {{ $post->created_at }}
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    {{ $post->author->name }}
                                 </td>
                                 <td class="py-3 px-6 text-center">
-                                    @if ($category->active === 1)
+                                    @if ($post->active === 1)
                                         <span
                                             class="bg-green-500 text-white py-1 px-3 rounded-full text-xs">{{ __('Active') }}</span>
                                     @else
@@ -80,10 +74,19 @@
                                     @endif
                                 </td>
                                 <td class="py-3 px-6 text-center">
+                                    @if ($post->feature === 1)
+                                        <span
+                                            class="bg-green-500 text-white py-1 px-3 rounded-full text-xs">{{ __('Yes') }}</span>
+                                    @else
+                                        <span
+                                            class="bg-red-500 text-white py-1 px-3 rounded-full text-xs">{{ __('No') }}</span>
+                                    @endif
+                                </td>
+                                <td class="py-3 px-6 text-center">
                                     <div class="flex item-center justify-center">
                                         <div
                                             class="w-4 mr-2 transform text-blue-500 hover:text-blue-600 hover:scale-110">
-                                            <a href="{{ route('categories.edit', $category) }}">
+                                            <a href="{{ route('posts.edit', $post) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -93,7 +96,7 @@
                                             </a>
                                         </div>
                                         <div class="mr-2 transform text-red-500 hover:text-red-600 hover:scale-110">
-                                            <form action="{{ route('categories.destroy', $category) }}" method="POST"
+                                            <form action="{{ route('posts.destroy', $post) }}" method="POST"
                                                 style="display: inline-block;">
                                                 @csrf
                                                 <input type="hidden" name="_method" value="DELETE">
@@ -114,7 +117,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5">
+                                <td colspan="7">
                                     <div class="text-gray-400 text-center font-bold mt-6">
                                         {{ __('No data were found...') }}</div>
                                 </td>
@@ -124,7 +127,7 @@
                     </tbody>
                 </table>
                 <div class="mt-5 mb-2 mx-2">
-                    {{ $categories->appends($_GET)->links() }}
+                    {{ $posts->appends($_GET)->links() }}
                 </div>
             </div>
         </div>

@@ -10,4 +10,10 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'slug', 'active'];
+
+    // Quan hệ nhiều 1 (hasMany <--> belongsTo)
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

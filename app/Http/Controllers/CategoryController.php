@@ -16,9 +16,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::when(request('search'), function ($query) {
-            return $query->where('name', 'like', '%' . request('search') . '%');
-        })
+        $categories = Category::with('posts')
+            ->when(request('search'), function ($query) {
+                return $query->where('name', 'like', '%' . request('search') . '%');
+            })
             ->orderBy('id', 'desc') //  có thể dùng latest()
             ->paginate(9);
 

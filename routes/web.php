@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,4 +50,5 @@ Route::middleware([
      * thì có thể thay thế bằng cách dùng route resources
      */
     Route::resource('categories', CategoryController::class);
+    Route::resource('posts', PostController::class);
 });
