@@ -1,5 +1,5 @@
 <div class="mb-5">
-    <form action="{{ route('categories.index') }}">
+    <form action="{{ route('tags.index') }}">
         <div class="w-full shadow-md p-5 rounded-lg bg-white">
             <div>
                 <div class="relative">
@@ -13,7 +13,7 @@
                     </div>
                     <input type="text"
                         @if (request()->get('search')) value="{{ request()->get('search') }}" @endif name="search"
-                        placeholder="Search by category name ..."
+                        placeholder="Search by tag name ..."
                         class="px-8 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
                 </div>
             </div>
@@ -25,7 +25,10 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
+                    {{-- <span>{{ __('Search') }}</span> --}}
+
                 </button>
+
                 <a href="{{ route('categories.index') }}" title="Reset filter"
                     class="flex items-center mr-3 px-2 py-2 bg-gray-400 hover:bg-gray-500 text-gray-50 text-sm font-medium rounded-md">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -33,6 +36,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M4.5 12c0-1.232.046-2.453.138-3.662a4.006 4.006 0 013.7-3.7 48.678 48.678 0 017.324 0 4.006 4.006 0 013.7 3.7c.017.22.032.441.046.662M4.5 12l-3-3m3 3l3-3m12 3c0 1.232-.046 2.453-.138 3.662a4.006 4.006 0 01-3.7 3.7 48.657 48.657 0 01-7.324 0 4.006 4.006 0 01-3.7-3.7c-.017-.22-.032-.441-.046-.662M19.5 12l-3 3m3-3l3 3" />
                     </svg>
+
+                    {{-- <span>{{ __('Reset') }}</span> --}}
                 </a>
             </div>
         </div>

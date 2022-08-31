@@ -6,7 +6,9 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -42,7 +44,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.post.create', compact('categories'));
+        $tags = Tag::all();
+        return view('admin.post.create', compact('categories', 'tags'));
     }
 
     /**
@@ -73,7 +76,10 @@ class PostController extends Controller
             'image' => $image
         ];
 
-        Post::create($data);
+        $post = Post::create($data);
+        if ($request->has('tags')) {
+            $post->tags()->attach($request->tags);
+        }
         return redirect()->route('posts.index')->with('success', 'Post added successfully !');
     }
 
@@ -97,7 +103,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('admin.post.edit', compact('categories', 'post'));
+        $tags = Tag::all();
+        return view('admin.post.edit', compact('categories', 'post', 'tags'));
     }
 
     /**
@@ -109,9 +116,16 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        if ($request->file('image')) {
+        if ($request->file('image') && request('image') != '') {
             // unlink old image
             // todo ...
+            $old_image = $post->image; // lấy tên image cũ
+            $old_url_image = public_path('storage/posts/' . $old_image); // lấy url hình ảnh cũ
+
+            if (File::exists($old_url_image) && $old_image != '') {
+                unlink($old_url_image);
+            }
+
             $file = $request->file('image');
             $filename = $file->getClientOriginalName();
             $file->storeAs('posts', $filename, 'public');
@@ -133,6 +147,7 @@ class PostController extends Controller
         ];
 
         $post->update($data);
+        $post->tags()->sync($request->tags);
         return redirect()->route('posts.index')->with('success', 'Post updated successfully !');
     }
 

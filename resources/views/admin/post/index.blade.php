@@ -21,10 +21,10 @@
                 <table class="min-w-max w-full table-auto">
                     <thead>
                         <tr class="bg-gray-800 text-gray-50  text-md leading-normal">
+                            <th class="py-3 px-6 text-center"></th>
                             <th class="py-3 px-6 text-center"> {{ __('No.') }}</th>
                             <th class="py-3 px-6 text-left">{{ __('Title') }}</th>
                             <th class="py-3 px-6 text-left">{{ __('Category') }}</th>
-                            {{-- <th class="py-3 px-6 text-left">{{ __('Slug') }}</th> --}}
                             <th class="py-3 px-6 text-left">{{ __('Created at') }}</th>
                             <th class="py-3 px-6 text-left">{{ __('Created by') }}</th>
                             <th class="py-3 px-6 text-center">{{ __('Status') }}</th>
@@ -36,6 +36,9 @@
                         @forelse ($posts as $index => $post)
                             <tr
                                 class="hover:bg-gray-100 border-b border-b-slate-200 hover:text-black hover:border-b-slate-300">
+                                <td class="py-3 px-6 text-center">
+                                    <input type="checkbox" name="check[]" id="">
+                                </td>
                                 <td class="py-3 px-6 text-left">
                                     {{ $index + $posts->firstItem() }}
                                 </td>

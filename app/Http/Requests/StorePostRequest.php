@@ -34,4 +34,11 @@ class StorePostRequest extends FormRequest
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
         ];
     }
+    // pending...
+    public function messages()
+    {
+        return [
+            'title.min' => 'toi thieu 3 chu'
+        ];
+    }
 }

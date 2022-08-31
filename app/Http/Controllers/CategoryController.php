@@ -46,7 +46,6 @@ class CategoryController extends Controller
     {
         Category::create([
             'name' => $request->name,
-            'slug' => $request->slug ? $request->slug : Str::slug($request->name),
             'active' => $request->active ? true : false,
         ]);
 
