@@ -12,6 +12,7 @@
         $users = App\Models\User::all();
         $categories = App\Models\Category::all();
         $posts = App\Models\Post::all();
+        $tags = App\Models\Tag::all();
     @endphp
 
     <div class="py-12">
@@ -97,15 +98,14 @@
 
                             </div>
                             <div class="text-right">
-                                <p class="text-2xl">{{ 123 }}</p>
+                                <p class="text-2xl">{{ $tags->count() }}</p>
                                 <p>Tags</p>
                             </div>
                         </div>
                     </a>
                 </div>
                 {{-- Recent Activity --}}
-                <div
-                    class="mx-auto relative pl-8 pr-4 sm:pl-8 lg:pr-8 py-4 my-8 rounded-lg bg-white dark:bg-gray-800">
+                <div class="mx-auto relative pl-8 pr-4 sm:pl-8 lg:pr-8 py-4 my-8 rounded-lg bg-white dark:bg-gray-800">
                     <div class="flex flex-wrap items-center justify-between">
                         <h1 class="text-xl sm:text-3xl font-bold text-gray-800 dark:text-gray-50">Recent Activity</h1>
                         <span>
@@ -193,11 +193,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
+
     </div>
 
-    
-</a>
+
+    </a>
 </x-app-layout>

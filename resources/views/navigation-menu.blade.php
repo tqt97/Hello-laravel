@@ -2,32 +2,104 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex justify-start">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center justify-start">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
+                        <div class="flex items-center">
+                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light-with-button-svg3.svg"
+                                alt="logo" />
+                            <h2 class="hidden sm:block text-base text-gray-700 font-bold leading-normal px-3">
+                                Hi, Laravel
+                            </h2>
+                        </div>
                     </a>
                 </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.*')">
-                        {{ __('Categories') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.*')">
-                        {{ __('Posts') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.*')">
-                        {{ __('Tags') }}
-                    </x-jet-nav-link>
-                </div>
             </div>
+            <div class="hidden sm:flex sm:items-center sm:ml-6  justify-end">
+                <!-- Navigation Links -->
+                <div class="flex">
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex h-16">
+                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.*')">
+                            {{ __('Categories') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.*')">
+                            {{ __('Posts') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.*')">
+                            {{ __('Tags') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.*')">
+                            {{ __('Slide') }}
+                        </x-jet-nav-link>
+                    </div>
+                </div>
+                <div class="ml-10 relative">
+                    <x-jet-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-indigo-500">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5" />
+                            </svg>
+                            <div
+                                class="absolute rounded-full bg-red bg-red-500 text-gray-50 text-xxs w-5 h-5 flex justify-center items-center border-1 -top-2 -right-2">
+                                <span class="text-xs p-5">2</span>
+                            </div>
 
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <!-- notifications -->
+                            <ul
+                                class="shadow-md absolute w-76 md:w-96 text-left text-gray-700 text-sm bg-white shadow-dialog rounded-xl max-h-128 overflow-y-auto z-10 -right-28 md:-right-12">
+                                <li>
+                                    <a href="#"
+                                        class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-3">
+                                        <img src="https://ui-avatars.com/api/?name=T&color=7F9CF5&background=EBF4FF"
+                                            class="rounded-xl w-10 h-10" alt="avatar">
+                                        <div class="ml-4">
+                                            <div class="line-clamp-6">
+                                                <span class="font-semibold">Tuantq</span> posted a conversion
+                                                <span class="font-semibold">This is my idea</span>:
+                                                <span>"Lorem ipsum dolor sit amet consectetur adipisicing elit"</span>
+                                            </div>
+                                            <div class="text-xs text-gray-500 mt-2">1 hour ago</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                    <div class="border-t border-gray-100"></div>
+
+                                <li>
+                                    <a href="#"
+                                        class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-3">
+                                        <img src="https://ui-avatars.com/api/?name=T&color=7F9CF5&background=EBF4FF"
+                                            class="rounded-xl w-10 h-10" alt="avatar">
+                                        <div class="ml-4">
+                                            <div>
+                                                <span class="font-semibold">Tuantq</span> commented on
+                                                <span class="font-semibold">Your post <strong>abc</strong></span>:
+                                                <span>"Lorem ipsum dolor sit amet consectetur adipisicing elit."</span>
+                                            </div>
+                                            <div class="text-xs text-gray-500 mt-2">1 hour ago</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="border-t border-gray-300 text-center">
+                                    <button
+                                        class="w-full block font-semibold hover:bg-gray-100 transition duration-150 ease-in px-5 py-4">
+                                        Mark all as read
+                                    </button>
+                                </li>
+                            </ul>
+                        </x-slot>
+                    </x-jet-dropdown>
+
+                </div>
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">
@@ -84,7 +156,7 @@
                 @endif
 
                 <!-- Settings Dropdown -->
-                <div class="ml-3 relative">
+                <div class="ml-5 relative">
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())

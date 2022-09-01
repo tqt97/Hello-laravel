@@ -68,17 +68,13 @@
                             name="description" id="description" cols="30" rows="3">{{ $post->description }}</textarea>
                         <x-jet-input-error for="description" class="mt-2" />
                     </div>
+
                     <div class="mt-4">
                         <x-jet-label for="image" value="{{ __('Image') }}" />
                         <div class="mt-1 rounded-md border-2 border-dashed border-gray-300 px-2 py-4">
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-3">
-                                    <svg class="h-16 w-16 text-gray-400" stroke="currentColor" fill="none"
-                                        viewBox="0 0 48 48" aria-hidden="true">
-                                        <path
-                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
+                                    <x-icon.image />
                                     <div class="text-sm text-gray-600">
                                         <x-jet-input id="image" class="block mt-1 w-full" type="file"
                                             accept="image/*" onchange="loadFile(event)" name="image"
@@ -99,6 +95,7 @@
                         </div>
                         <x-jet-input-error for="image" class="mt-2" />
                     </div>
+
                     <div class="grid grid-cols-6 gap-6 mt-4">
                         <div class="col-span-6 sm:col-span-3">
                             <fieldset>
@@ -122,6 +119,7 @@
                                 </div>
                             </fieldset>
                         </div>
+
                         <div class="col-span-6 sm:col-span-3">
                             <fieldset>
                                 <div class="text-base font-medium text-gray-900" aria-hidden="true">
@@ -145,9 +143,10 @@
                             </fieldset>
                         </div>
                     </div>
+
                     <div class="mt-4">
                         <x-jet-button>
-                            {{ __('Edit') }}
+                            {{ __('Update') }}
                         </x-jet-button>
                     </div>
                 </form>

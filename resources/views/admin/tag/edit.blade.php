@@ -21,11 +21,9 @@
                             value="{{ $tag->name }}" />
                         <x-jet-input-error for="name" class="mt-2" />
                     </div>
-
-
                     <div class="mt-4">
                         <x-jet-button>
-                            {{ __('Edit') }}
+                            {{ __('Update') }}
                         </x-jet-button>
                     </div>
                 </form>

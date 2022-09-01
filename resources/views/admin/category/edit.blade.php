@@ -12,12 +12,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-auto shadow-xl sm:rounded-lg p-8">
-
                 <form method="POST" action="{{ route('categories.update', $category) }}">
                     @csrf
                     @method('PUT')
-
-
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 sm:col-span-3">
                             <x-jet-label for="name" value="{{ __('Name') }}" />
@@ -25,6 +22,7 @@
                                 :value="old('name')" value="{{ $category->name }}" />
                             <x-jet-input-error for="name" class="mt-2" />
                         </div>
+
                         <div class="col-span-6 sm:col-span-3">
                             <x-jet-label for="slug" value="{{ __('Slug') }}" />
                             <x-jet-input id="slug" class="block mt-1 w-full" type="text" name="slug"
@@ -60,9 +58,10 @@
 
                     <div class="mt-4">
                         <x-jet-button>
-                            {{ __('Edit') }}
+                            {{ __('Update') }}
                         </x-jet-button>
                     </div>
+
                 </form>
 
             </div>

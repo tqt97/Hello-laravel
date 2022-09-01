@@ -13,15 +13,12 @@
             <div class="bg-white overflow-auto shadow-xl sm:rounded-lg p-8">
                 <form method="POST" action="{{ route('tags.store') }}" >
                     @csrf
-
                     <div>
                         <x-jet-label for="name" value="{{ __('Name') }}" />
                         <x-jet-input id="name" name="name" class="block mt-1 w-full" type="text"
                             :value="old('name')" />
                         <x-jet-input-error for="name" class="mt-2" />
                     </div>
-
-
                     <div class="mt-4">
                         <x-jet-button>
                             {{ __('Save') }}
