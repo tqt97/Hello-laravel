@@ -29,4 +29,9 @@ class StoreCategoryRequest extends FormRequest
             'active' => 'required|boolean|sometimes',
         ];
     }
+    public function messages(){
+        return [
+
+        ];
+    }
 }
