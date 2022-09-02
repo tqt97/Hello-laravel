@@ -11,7 +11,7 @@
                 <table class="min-w-max w-full table-auto">
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                            <th class="py-3 px-6 text-left">no</th>
+                            <th class="py-3 px-6 text-left">no111</th>
                             <th class="py-3 px-6 text-left">id</th>
                             <th class="py-3 px-6 text-left">migration</th>
                             <th class="py-3 px-6 text-center">batch</th>
