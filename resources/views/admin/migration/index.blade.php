@@ -6,15 +6,15 @@
     </x-slot>
 
     <x-wrap.container>
-<!-- component -->
+
             <div class="bg-white shadow-md rounded my-6">
                 <table class="min-w-max w-full table-auto">
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                            <th class="py-3 px-6 text-left">no</th>
-                            <th class="py-3 px-6 text-left">id</th>
-                            <th class="py-3 px-6 text-left">migration</th>
-                            <th class="py-3 px-6 text-center">batch</th>
+                            <th class="py-3 px-6 text-left">No.</th>
+                            <th class="py-3 px-6 text-left">ID</th>
+                            <th class="py-3 px-6 text-left">Migration</th>
+                            <th class="py-3 px-6 text-center">Batch</th>
                             <th class="py-3 px-6 text-center">Actions</th>
                         </tr>
                     </thead>
