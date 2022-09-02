@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GenerateSlugController;
+use App\Http\Controllers\MigrationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,7 @@ Route::middleware([
     Route::resource('categories', CategoryController::class);
     Route::resource('tags', TagController::class);
     Route::resource('posts', PostController::class);
+    Route::get('migrations', [MigrationController::class, 'index'])->name('migrations.index');
 });
 
 Route::get('generate_slug/category', [GenerateSlugController::class, 'category'])->name('generate_slug.category');
