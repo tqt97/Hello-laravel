@@ -33,8 +33,8 @@
                         <x-jet-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.*')">
                             {{ __('Tags') }}
                         </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.*')">
-                            {{ __('Slide') }}
+                        <x-jet-nav-link href="{{ route('migrations.index') }}" :active="request()->routeIs('migrations.*')">
+                            {{ __('Migrations') }}
                         </x-jet-nav-link>
                     </div>
                 </div>
